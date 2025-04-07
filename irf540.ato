@@ -1,0 +1,12 @@
+component IRF540N:
+    """Infineon_Technologies_IRF540NSTRLPBF component"""
+    lcsc_id = "C23982"
+    manufacturer = "Infineon Technologies"
+    mpn = "IRF540NSTRLPBF"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1806151820_Infineon-Technologies-IRF540NSTRLPBF_C23982.pdf"
+    designator_prefix = "Q"
+
+    # pins
+    signal D ~ pin 4
+    signal G ~ pin 1
+    signal S ~ pin 3

@@ -1,0 +1,12 @@
+component 2N2222A:
+    """STSemtech_2N2222A component"""
+    lcsc_id = "C118536"
+    manufacturer = "ST(Semtech)"
+    mpn = "2N2222A"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1809200018_ST-Semtech-2N2222A_C118536.pdf"
+    designator_prefix = "Q"
+
+    # pins
+    signal B ~ pin 2
+    signal C ~ pin 3
+    signal E ~ pin 1
