@@ -8,6 +8,9 @@ paths:
 builds:
   default:
     entry: main.ato:App
+  particle-counter:
+    entry: 
+      /home/lucy/Documents/atopile/spacebridgehabpcb/particle_counter.ato:ParticleCounter
 dependencies:
 - name: esp32-s3
   version_spec: '@75e753784c9e896841417f2e0486dc0308146a6c'
@@ -23,4 +26,9 @@ dependencies:
   version_spec: '@05e0eabdcf71388f020d9ddb3fca08726b19a664'
   link_broken: false
   path: .ato/modules/tps63020dsjr
+  source:
+- name: generics
+  version_spec: '@93de318f38c5acb079fb5cfc9d5a06dc5f02b157'
+  link_broken: false
+  path: .ato/modules/generics
   source:

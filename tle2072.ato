@@ -1,0 +1,24 @@
+
+from "generics/interfaces.ato" import Power
+
+component TLE2072:
+    """Texas_Instruments_TLE2072IDR component"""
+    lcsc_id = "C30340"
+    manufacturer = "Texas Instruments"
+    mpn = "TLE2072IDR"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1810181614_Texas-Instruments-TLE2072IDR_C30340.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal IN1minus ~ pin 2
+    signal IN1plus ~ pin 3
+    signal IN2minus ~ pin 6
+    signal IN2plus ~ pin 5
+    signal OUT1 ~ pin 1
+    signal OUT2 ~ pin 7
+    signal GND ~ pin 4
+    signal VCC ~ pin 8
+
+    power = new Power
+    power.vcc ~ VCC
+    power.gnd ~ GND

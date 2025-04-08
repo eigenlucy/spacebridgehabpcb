@@ -1,0 +1,11 @@
+component BPW34:
+    """Vishay_Intertech_BPW34 component"""
+    lcsc_id = "C85128"
+    manufacturer = "Vishay Intertech"
+    mpn = "BPW34"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1810121241_Vishay-Intertech-BPW34_C85128.pdf"
+    designator_prefix = "LED"
+
+    # pins
+    signal A ~ pin 1
+    signal K ~ pin 2
