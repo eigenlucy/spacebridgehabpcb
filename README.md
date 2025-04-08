@@ -15,16 +15,14 @@ See atopile docs for detailed guides on usage: https://docs.atopile.io/atopile/i
 $ uv tool install atopile
 ```
 3.1 (alternative install, my preferred method, easier to debug and manage versions):
-<ul>clone the main [atopile repo](https://github.com/atopile/atopile)</ul>
-<ul>```$ cd atopile```, ```$ rm uv.lock```</ul>
-<ul>```$ uv sync --dev```</ul>
-<ul>```bash
-    uv build
-    ```</ul>
-<ul>```uv tool install atopile-0.3.XX-cp313-cp313-linux-_x86_64.whl</ul>
-<ul>add the uv tools binary directory to you path with something like ```$ fish_add_path /home/user/.local/share/uv/tools/atopile/```</ul>
+> clone the main [atopile repo](https://github.com/atopile/atopile)
+> $ cd atopile, $ rm uv.lock
+> $ uv sync --dev```</ul>
+> $ uv build </ul>
+> $ uv tool install atopile-0.3.XX-cp313-cp313-linux-_x86_64.whl
+> Add the uv tools binary directory to you path with something like $ fish_add_path /home/user/.local/share/uv/tools/atopile/
 4: Check your version with ```$ ato --version```
-4: configure the atopile plugin
+5: configure the atopile plugin
 ```bash
 $ ato configure
 ```
