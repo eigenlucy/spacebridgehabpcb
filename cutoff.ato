@@ -1,4 +1,5 @@
 from "generics/interfaces.ato" import Power, I2C
+import Resistor
 from "tip120.ato" import TIP120
 from "screwterms.ato" import Screwterms2P
 from "lithiumsc.ato" import LIC0825Q3R8506
