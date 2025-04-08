@@ -6,3 +6,6 @@ component Screwterms2P:
     datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1912251633_Ningbo-Kangnex-Elec-WJ45C-B-9-5-2P_C8397.pdf"
     designator_prefix = "P"
 
+    # Pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
