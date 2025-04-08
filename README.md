@@ -8,12 +8,14 @@ Created by Lucy Moglia <eigenlucy@proton.me>
 See atopile docs for detailed guides on usage: https://docs.atopile.io/atopile/introduction. Install instructions below
 
 ### Building the project
-1: Build the project to select components based on JLCPCB availability and load them into the kicad PCB
+1: Clone the required submodules with ```$ git submodule update --init --recursive```
+
+2: Build the project to select components based on JLCPCB availability and load them into the kicad PCB
 ``` $ ato build -t all```
 
-2: Complete/review the layout with Kicad Standalone PCB editor
+3: Complete/review the layout with Kicad Standalone PCB editor
 
-3: Gerbers/PCBA files are generated through an Actions run on a commit and placed in the build artifacts folder
+4: Gerbers/PCBA files are generated through an Actions run on a commit and placed in the build artifacts folder
 
 ### Linux Install (should work with Ubuntu, Debian, Arch, and NixOS)
 1: Install [uv](https://github.com/astral-sh/uv)
