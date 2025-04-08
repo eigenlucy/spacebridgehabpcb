@@ -1,0 +1,16 @@
+from "generics/interfaces.ato" import Power, SPI
+from "esp32-s3/elec/src/esp32-s3.ato" import ESP32S3
+from "particle-counter.ato" import ParticleCounter
+from "micromppt/elec/src/micromppt.ato" import Micromppt
+from "e22900m30s.ato" import E22900M30S
+from "oled.ato" import OLED
+from "bme680.ato" import BME680
+from "atgm336h.ato" import ATGM336H
+
+module Mainboard:
+    power_5V = new Power
+    uc = new ESP32S3
+    mppt = new Micromppt
+    oled = new OLED
+    bme680 = new BME680
+    gps = new ATGM336H

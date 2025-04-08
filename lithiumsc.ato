@@ -1,0 +1,12 @@
+component LIC0825Q3R8506:
+    """CDA_LIC0825Q3R8506 component"""
+    lcsc_id = "C3031013"
+    manufacturer = "CDA"
+    mpn = "LIC0825Q3R8506"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2206061716_CDA-LIC0825Q3R8506_C3031013.pdf"
+    designator_prefix = "C"
+
+    # pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+

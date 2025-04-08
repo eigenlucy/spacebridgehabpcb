@@ -1,3 +1,5 @@
+from "generics/interfaces.ato" import Power, SPI
+
 component E22900M30S:
     """Chengdu_Ebyte_Elec_Tech_E22_900M30S component"""
     lcsc_id = "C411294"
@@ -29,3 +31,11 @@ component E22900M30S:
     signal TXEN ~ pin 7
     signal VCC ~ pin 9
     VCC ~ pin 10
+
+    power = new Power
+    spi = new SPI
+    spi.mosi ~ MOSI
+    spi.miso ~ MISO
+    spi.scK ~ SCK
+    spi.cs ~ NSS
+    spi.gnd ~ GND

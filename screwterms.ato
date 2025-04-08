@@ -1,0 +1,8 @@
+component Screwterms2P:
+    """Ningbo_Kangnex_Elec_WJ45C_B_9_5_2P component"""
+    lcsc_id = "C8397"
+    manufacturer = "Ningbo Kangnex Elec"
+    mpn = "WJ45C-B-9.5-2P"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1912251633_Ningbo-Kangnex-Elec-WJ45C-B-9-5-2P_C8397.pdf"
+    designator_prefix = "P"
+

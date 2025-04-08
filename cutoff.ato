@@ -1,0 +1,10 @@
+from "generics/interfaces.ato" import Power, I2C
+from "tip120.ato" import TIP120
+from "screwterms.ato" import Screwterms2P
+from "lithiumsc.ato" import LIC0825Q3R8506
+
+module Cutoff:
+  power = new Power
+  bjt = new TIP120
+  screwterms = new Screwterms2P
+  supercap = new LIC0825Q3R8506

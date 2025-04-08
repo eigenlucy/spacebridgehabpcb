@@ -1,4 +1,6 @@
-component HS_HS91L02W2C01:
+from "generics/interfaces.ato" import I2C, Power
+
+component OLED:
     """HS_HS91L02W2C01 component"""
     lcsc_id = "C5248081"
     manufacturer = "HS"
@@ -11,3 +13,12 @@ component HS_HS91L02W2C01:
     signal SCL ~ pin 3
     signal SDA ~ pin 4
     signal VCC ~ pin 2
+
+    power = new Power
+    power.vcc ~ VCC
+    power.gnd ~ GND
+
+    i2c = new I2C
+    i2c.sda ~ SDA
+    i2c.scl ~ SCL
+    i2c.gnd ~ GND

@@ -7,10 +7,12 @@ paths:
 
 builds:
   default:
-    entry: main.ato:App
+    entry: mainboard.ato:Mainboard
   particle-counter:
     entry: 
       /home/lucy/Documents/atopile/spacebridgehabpcb/particle_counter.ato:ParticleCounter
+  cutoff:
+    entry: /home/lucy/Documents/atopile/spacebridgehabpcb/cutoff.ato:Cutoff
 dependencies:
 - name: esp32-s3
   version_spec: '@75e753784c9e896841417f2e0486dc0308146a6c'
