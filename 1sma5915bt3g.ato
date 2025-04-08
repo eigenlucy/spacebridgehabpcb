@@ -1,0 +1,11 @@
+component 1SMA5915BT3G:
+    """onsemi_1SMA5915BT3G component"""
+    lcsc_id = "C145556"
+    manufacturer = "onsemi"
+    mpn = "1SMA5915BT3G"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_onsemi-1SMA5915BT3G_C145556.pdf"
+    designator_prefix = "D"
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1
