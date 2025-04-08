@@ -1,0 +1,31 @@
+component E22900M30S:
+    """Chengdu_Ebyte_Elec_Tech_E22_900M30S component"""
+    lcsc_id = "C411294"
+    manufacturer = "Chengdu Ebyte Elec Tech"
+    mpn = "E22-900M30S"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1912111437_Chengdu-Ebyte-Elec-Tech-E22-900M30S_C411294.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal ANT ~ pin 21
+    signal BUSY ~ pin 14
+    signal DIO1 ~ pin 13
+    signal DIO2 ~ pin 8
+    signal GND ~ pin 1
+    GND ~ pin 2
+    GND ~ pin 3
+    GND ~ pin 4
+    GND ~ pin 5
+    GND ~ pin 11
+    GND ~ pin 12
+    GND ~ pin 20
+    GND ~ pin 22
+    signal MISO ~ pin 16
+    signal MOSI ~ pin 17
+    signal NRST ~ pin 15
+    signal NSS ~ pin 19
+    signal RXEN ~ pin 6
+    signal SCK ~ pin 18
+    signal TXEN ~ pin 7
+    signal VCC ~ pin 9
+    VCC ~ pin 10

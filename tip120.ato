@@ -1,0 +1,12 @@
+component TIP120:
+    """STMicroelectronics_TIP120 component"""
+    lcsc_id = "C262990"
+    manufacturer = "STMicroelectronics"
+    mpn = "TIP120"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1810301824_STMicroelectronics-TIP120_C262990.pdf"
+    designator_prefix = "Q"
+
+    # pins
+    signal B ~ pin 1
+    signal C ~ pin 2
+    signal E ~ pin 3
