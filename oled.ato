@@ -1,0 +1,13 @@
+component HS_HS91L02W2C01:
+    """HS_HS91L02W2C01 component"""
+    lcsc_id = "C5248081"
+    manufacturer = "HS"
+    mpn = "HS91L02W2C01"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2307271119_HS-HS91L02W2C01_C5248081.pdf"
+    designator_prefix = "OLED"
+
+    # pins
+    signal GND ~ pin 1
+    signal SCL ~ pin 3
+    signal SDA ~ pin 4
+    signal VCC ~ pin 2

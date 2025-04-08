@@ -1,0 +1,6 @@
+[submodule "DIY_particle_detector"]
+	path = DIY_particle_detector
+	url = git@github.com:ozel/DIY_particle_detector.git
+[submodule "micromppt"]
+	path = micromppt
+	url = https://github.com/eigenlucy/micromppt

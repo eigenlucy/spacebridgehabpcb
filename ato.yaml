@@ -8,11 +8,19 @@ paths:
 builds:
   default:
     entry: main.ato:App
-  micromppt:
-    entry: /home/lucy/Documents/atopile/spacebridgehabpcb/micromppt.ato:Micromppt
 dependencies:
 - name: esp32-s3
   version_spec: '@75e753784c9e896841417f2e0486dc0308146a6c'
   link_broken: false
   path: .ato/modules/esp32-s3
+  source:
+- name: qwiic-connectors
+  version_spec:
+  link_broken: false
+  path: .ato/modules/qwiic-connectors
+  source:
+- name: tps63020dsjr
+  version_spec: '@05e0eabdcf71388f020d9ddb3fca08726b19a664'
+  link_broken: false
+  path: .ato/modules/tps63020dsjr
   source:
