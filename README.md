@@ -5,7 +5,15 @@ HAB PCB Tracker with cutdown, GPS, enviromental monitoring, LoRa telemetry
 Created by Lucy Moglia <eigenlucy@proton.me>
 
 ## Atopile usage 101
-See atopile docs for detailed guides on usage: https://docs.atopile.io/atopile/introduction
+See atopile docs for detailed guides on usage: https://docs.atopile.io/atopile/introduction. Install instructions below
+
+### Building the project
+1: Build the project to select components based on JLCPCB availability and load them into the kicad PCB
+``` $ ato build -t all```
+
+2: Complete/review the layout with Kicad Standalone PCB editor
+
+3: Gerbers/PCBA files are generated through an Actions run on a commit and placed in the build artifacts folder
 
 ### Linux Install (should work with Ubuntu, Debian, Arch, and NixOS)
 1: Install [uv](https://github.com/astral-sh/uv)
@@ -53,6 +61,8 @@ $ brew install atopile/tap/atopile
 $ ato configure
 ```
 
+### Visual Studio Code/Cursor Extension Install
+
 ### Project Sturcture
 | file          | kicad_pcb path | Description  |
 | ------------- |:-------------: | ------------:|
@@ -60,3 +70,4 @@ $ ato configure
 | ~/micromppt.ato | ~/micromppt/elec/layout/default/micromppt.kicad_pcb | 5W MPPT battery charger with embedded set point adjustment algorithm |
 | ~/particle_counter.ato | ~/layouts/particle-counter/particle-counter.kicad_pcb | alpha particle detector based on CERN open source hardware kit |
 | ~/cutoff.ato | ~/layouts/cutoff/cutoff.kicad_pcb | Balloon cutoff circuit, discharges a lithium hybrid supercapacitor through nichrome wire wrapped around the rope tying the payload to the balloon |
+
