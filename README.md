@@ -53,3 +53,10 @@ $ brew install atopile/tap/atopile
 $ ato configure
 ```
 
+### Project Sturcture
+| file          | kicad_pcb path | Description  |
+| ------------- |:-------------: | ------------:|
+| ~/mainboard.ato | ~/layouts/default/default.kicad_pcb | the final pcb incorporating all submodules |
+| ~/micromppt.ato | ~/micromppt/elec/layout/default/micromppt.kicad_pcb | 5W MPPT battery charger with embedded set point adjustment algorithm |
+| ~/particle_counter.ato | ~/layouts/particle-counter/particle-counter.kicad_pcb | alpha particle detector based on CERN open source hardware kit |
+| ~/cutoff.ato | ~/layouts/cutoff/cutoff.kicad_pcb | Balloon cutoff circuit, discharges a lithium hybrid supercapacitor through nichrome wire wrapped around the rope tying the payload to the balloon |
