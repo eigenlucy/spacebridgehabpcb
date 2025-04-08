@@ -1,4 +1,4 @@
-component 1SMA5915BT3G:
+component _1SMA5915BT3G:
     """onsemi_1SMA5915BT3G component"""
     lcsc_id = "C145556"
     manufacturer = "onsemi"

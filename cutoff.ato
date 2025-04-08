@@ -3,7 +3,7 @@ import Resistor
 from "tip120.ato" import TIP120
 from "screwterms.ato" import Screwterms2P
 from "lithiumsc.ato" import LIC0825Q3R8506
-from "1sma5915bt3g.ato" import 1SMA5915BT3G
+from "1sma5915bt3g.ato" import _1SMA5915BT3G
 
 """
 Spacebridge HAB Cutoff Mechanism
@@ -18,7 +18,7 @@ module Cutoff:
     screwterms = new Screwterms2P
     supercap = new LIC0825Q3R8506
     Rsip = new Resistor; Rsip.value = 1kohm +/- 20%; Rsip.package = "R0402"
-    zener = new 1SMA5915BT3G #3.9V nom zener diode OVP
+    zener = new _1SMA5915BT3G #3.9V nom zener diode OVP
   
     signal SC_GATE ~ bjt_SC.B # Dis/connect supercapacitor from charging
     signal CUTOFF_GATE ~ bjt_cutoff.B # Fire cutoff
