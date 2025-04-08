@@ -6,6 +6,7 @@ from "e22900m30s.ato" import E22900M30S
 from "oled.ato" import OLED
 from "bme680.ato" import BME680
 from "atgm336h.ato" import ATGM336H
+from "cutoff.ato" import Cutoff
 
 module Mainboard:
     power_5V = new Power
@@ -14,3 +15,4 @@ module Mainboard:
     oled = new OLED
     bme680 = new BME680
     gps = new ATGM336H
+    cutoff = new Cutoff

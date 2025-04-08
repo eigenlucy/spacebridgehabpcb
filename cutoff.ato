@@ -8,3 +8,9 @@ module Cutoff:
   bjt = new TIP120
   screwterms = new Screwterms2P
   supercap = new LIC0825Q3R8506
+
+  Rsip = new Resistor; Rsip.value = 1kohm +/- 20%; Rsip.package = "R0402"
+  power.vcc ~ Rsip.p1; Rsip.p2 ~ supercap.p1; supercap.p2 ~ power.gnd
+  screwterms.p1 ~ supercap.p1; screwterms.p2 ~ bjt.C; bjt.E ~ power.gnd
+  # Nichrome attaches across screws
+  signal GATE ~ bjt.B
