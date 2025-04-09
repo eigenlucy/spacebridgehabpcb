@@ -4,7 +4,7 @@ from "particle-counter.ato" import ParticleCounter
 from "micromppt/elec/src/micromppt.ato" import Micromppt
 from "e22900m30s.ato" import E22900M30S
 from "oled.ato" import OLED
-from "bme680.ato" import BME680
+from "bme688.ato" import BME688
 from "atgm336h.ato" import ATGM336H
 from "cutoff.ato" import Cutoff
 
@@ -13,6 +13,6 @@ module Mainboard:
     uc = new ESP32S3
     mppt = new Micromppt
     oled = new OLED
-    bme680 = new BME680
+    bme688 = new BME688
     gps = new ATGM336H
     cutoff = new Cutoff

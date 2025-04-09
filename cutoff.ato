@@ -8,7 +8,7 @@ from "1sma5915bt3g.ato" import _1SMA5915BT3G
 """
 Spacebridge HAB Cutoff Mechanism
 Notes:
-    Lithium supercap cannot exceed 3.7V, sense SC voltage with ESP32-S3 ADC to cutoff charging at the limit. High series resistance + zener diode is sufficient protection, but waste energy
+    Lithium supercap cannot exceed 3.7V, sense SC voltage with ESP32-S3 ADC to cutoff charging at the limit. High series resistance + zener diode is sufficient protection, but wastes energy
 """
 
 module Cutoff:
@@ -24,7 +24,7 @@ module Cutoff:
     signal CUTOFF_GATE ~ bjt_cutoff.B # Fire cutoff
     signal SC_Sense ~ supercap.p1 # Sense capacitor voltage
     power.vcc ~ Rsip.p1; Rsip.p2 ~ supercap.p1; supercap.p2 ~ bjt_SC.C; bjt_SC.E ~ power.gnd
-    zener.K ~ supercap.p1; zener.A ~ power.gnd # Reverse conducts through SC/Rsip when SC_V =< 3.9V, redundancy in case uC fails to disconnect SC
+    zener.K ~ supercap.p1; zener.A ~ power.gnd # Reverse conducts through SC/Rsip when SC_V >= 3.9V, redundancy in case uC fails to disconnect SC
     # Nichrome attaches across screw terminals
     screwterms.p1 ~ supercap.p1; screwterms.p2 ~ bjt_cutoff.C; bjt_cutoff.E ~ power.gnd
 

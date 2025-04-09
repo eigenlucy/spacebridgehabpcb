@@ -1,0 +1,29 @@
+import Power, Capacitor, Resistor, I2C, SPI
+
+component BME688:
+    """Bosch_Sensortec_BME688 component"""
+    lcsc_id = "C3664478"
+    manufacturer = "Bosch Sensortec"
+    mpn = "BME688"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2310170921_Bosch-Sensortec-BME688_C3664478.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal CSB ~ pin 2
+    signal GND ~ pin 1
+    GND ~ pin 7
+    signal SCK ~ pin 4
+    signal SDI ~ pin 3
+    signal SDO ~ pin 5
+    signal VDD ~ pin 8
+    signal VDDIO ~ pin 6
+
+    power = new Power
+    power.vcc ~ VDD; power.gnd ~ GND
+    i2c = new I2C
+    CSB ~ VDDIO # Enable I2C interface
+    # CSB ~ GND # Enable SPI Interface
+    i2c.sda ~ SDA; i2c.scl ~ SCK
+    SDO ~ GND # I2C addr LSB = 0
+    # SDO ~ VDDIO # I2C addr LSB = 1
+
