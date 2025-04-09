@@ -36,6 +36,6 @@ component E22900M30S:
     spi = new SPI
     spi.mosi ~ MOSI
     spi.miso ~ MISO
-    spi.scK ~ SCK
+    spi.sck ~ SCK
     spi.cs ~ NSS
     spi.gnd ~ GND

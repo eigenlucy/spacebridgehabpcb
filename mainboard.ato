@@ -1,4 +1,5 @@
-from "generics/interfaces.ato" import Power, SPI
+import Resistor, Capacitor
+from "generics/interfaces.ato" import Power, SPI, I2C
 from "esp32-s3/elec/src/esp32-s3.ato" import ESP32S3
 from "particle-counter.ato" import ParticleCounter
 from "micromppt/elec/src/micromppt.ato" import Micromppt
@@ -16,3 +17,4 @@ module Mainboard:
     bme688 = new BME688
     gps = new ATGM336H
     cutoff = new Cutoff
+    lora = new E22900M30S
