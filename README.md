@@ -66,8 +66,8 @@ $ ato configure
 ### Visual Studio Code/Cursor Extension Install
 
 ### Project Sturcture
-| title | file          | kicad_pcb path | Description  |
-| --------- | ---------------- |:-----------------: | ---------------------------------:|
+| title | file | kicad_pcb path | description  |
+| :---------: | :----------------: |:-----------------: | :---------------------------------:|
 | mainboard | ~/mainboard.ato | ~/layouts/default/default.kicad_pcb | the final pcb incorporating all submodules |
 | micromppt | ~/micromppt/elec/src/micromppt.ato | ~/micromppt/elec/layout/default/micromppt.kicad_pcb | 5W MPPT battery charger with embedded set point adjustment algorithm |
 | particle counter | ~/particle_counter.ato | ~/layouts/particle-counter/particle-counter.kicad_pcb | alpha particle detector based on CERN open source hardware kit |
