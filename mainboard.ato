@@ -1,20 +1,60 @@
 import Resistor, Capacitor
-from "generics/interfaces.ato" import Power, SPI, I2C
+from "generics/interfaces.ato" import Power, SPI, I2C, USB2
 from "esp32-s3/elec/src/esp32-s3.ato" import ESP32S3
-from "particle-counter.ato" import ParticleCounter
+from "particle_counter.ato" import ParticleCounter
 from "micromppt/elec/src/micromppt.ato" import Micromppt
 from "e22900m30s.ato" import E22900M30S
 from "oled.ato" import OLED
 from "bme688.ato" import BME688
 from "atgm336h.ato" import ATGM336H
 from "cutoff.ato" import Cutoff
+from "ams1117-33/elec/src/ams1117-33.ato" import AMS111733
+from "bq24045dsqr/elec/src/bq24045dsqr.ato" import BQ2404XDSQR
 
 module Mainboard:
     power_5V = new Power
+    power_3V3 = new Power
+    power_vbat = new Power
+
+    # SPV1040 Based 5W Autonomous Solar Charger
+    # mppt = new Micromppt
+
+    # 5V 1A Single Cell Lion Charger
+    # bms = new BQ2404XDSQR
+
+    ldo = new AMS111733
+    ldo.power_in ~ power_vbat; ldo.power_out ~ power_3V3
+
     uc = new ESP32S3
-    mppt = new Micromppt
-    oled = new OLED
-    bme688 = new BME688
-    gps = new ATGM336H
-    cutoff = new Cutoff
+    uc.power ~ power_3V3
+
     lora = new E22900M30S
+    lora.power ~ power_5V
+    lora_buf1 = new Capacitor; lora_buf1.value = 100nF +/- 20%; lora_buf1.package = "C0603"
+    lora_buf1.power ~ lora.power
+    lora_buf2 = new Capacitor; lora_buf2.value = 1uF +/- 20%; lora_buf2.package = "C0603"
+    lora_buf2.power ~ lora.power
+    lora.spi ~ uc.spi # Connect the ESP32 and LoRa module SPI interfaces
+
+    oled = new OLED
+    oled.power ~ power_3V3
+    oled.i2c ~ uc.i2c
+
+    bme688 = new BME688
+    bme688.power ~ power_3V3
+    bme688.i2c ~ uc.i2c
+
+    gps = new ATGM336H
+    gps.power ~ power_3V3
+    gps.i2c ~ uc.i2c
+
+    detector = new ParticleCounter
+    detector.power ~ power_5V # Check if this is right
+    detector.out ~ uc.io2 # ADC Channel
+
+    cutoff = new Cutoff
+    cutoff.power ~ power_5V # cutoff.power--/\1kohm/\-->|supercap|
+    # IO can be remapped as needed for layout, check esp32s3.ato
+    cutoff.SC_GATE ~ uc.io0 # Dis/connect supercapacitor
+    cutoff.CUTOFF_GATE ~ uc.io1 # Fire cutoff, active high
+

@@ -22,9 +22,13 @@ component ATGM336H:
     signal SCL ~ pin 17
     signal SDA ~ pin 16
     signal TXD ~ pin 2
-    signal VBAT ~ pin 6
+    signal VBAT ~ pin 6 # RTC 1.5V-3.6V Input
     signal VCC ~ pin 8
     signal VCC_RF ~ pin 14
+
+    power = new Power
+    power.vcc ~ VCC; power.vcc ~ VCC_RF # 3V3
+    power.gnd ~ GND
 
     i2c = new I2C
     SCL ~ i2c.scl; SDA ~ i2c.sda; i2c.gnd ~ GND

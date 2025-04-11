@@ -22,7 +22,12 @@ module Cutoff:
   
     signal SC_GATE ~ bjt_SC.B # Dis/connect supercapacitor from charging
     signal CUTOFF_GATE ~ bjt_cutoff.B # Fire cutoff
-    signal SC_Sense ~ supercap.p1 # Sense capacitor voltage
+    Rpulldown = new Resistor; Rpulldown.value = 10kohm +/- 20%; Rpulldown.package = "R0402"
+    Rpulldown.p1 ~ bjt_cutoff.B; Rpulldown.p2 ~ power.gnd
+    signal SC_Sense # Sense capacitor voltage through Rtop/Rbot divider
+    Rtop = new Resistor; Rtop.value = 100kohm +/- 20%; Rtop.package = "R0402"
+    Rbot = new Resistor; Rbot.value = 100kohm +/- 20%; Rbot.package = "R0402"
+    supercap.p1 ~ Rtop.p1; Rtop.p2 ~ Rbot.p1; Rbot.p2 ~ power.gnd; Rtop.p2 ~ SC_Sense 
     power.vcc ~ Rsip.p1; Rsip.p2 ~ supercap.p1; supercap.p2 ~ bjt_SC.C; bjt_SC.E ~ power.gnd
     zener.K ~ supercap.p1; zener.A ~ power.gnd # Reverse conducts through SC/Rsip when SC_V >= 3.9V, redundancy in case uC fails to disconnect SC
     # Nichrome attaches across screw terminals

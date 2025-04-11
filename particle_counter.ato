@@ -43,4 +43,4 @@ module ParticleCounter:
     R9 = new Resistor; R9.value = 2.2kohm +/- 5%; R9.package = "R0201"
     C10 = new Capacitor; C10.value = 100nF +/- 5%; C10.package = "C0402"
     C10.p1 ~ C9.p1; C10.p2 ~ R9.p1; R9.p2 ~ power.gnd
-    signal OUTPUT ~ R9.p1
+    signal out ~ R9.p1

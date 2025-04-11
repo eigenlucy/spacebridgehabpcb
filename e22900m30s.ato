@@ -1,4 +1,5 @@
 from "generics/interfaces.ato" import Power, SPI
+from "generics/capacitors.ato" import Capacitor 
 
 component E22900M30S:
     """Chengdu_Ebyte_Elec_Tech_E22_900M30S component"""
@@ -8,9 +9,14 @@ component E22900M30S:
     datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1912111437_Chengdu-Ebyte-Elec-Tech-E22-900M30S_C411294.pdf"
     designator_prefix = "U"
 
+    # The Chengdu E22-900M30S Module Consists of a SX1268 IC + Amplifier
+    # SX1268 Datasheet https://www.semtech.com/products/wireless-rf/lora-connect/sx1268
+    # Full teardown here: https://github.com/S5NC/CDEBYTE_Modules
+    # My tests on E22900M30S Supply Voltage / Set Power / TX Power: https://hackaday.io/project/202604-femtofox-pro-tx-power-power-consumption-testing
+    # 5V VCC recommended for max TX power. Use 3V3 IO (even with 5V VCC).
     # pins
     signal ANT ~ pin 21
-    signal BUSY ~ pin 14
+    signal BUSY ~ pin 14 # Busy indicator, active high
     signal DIO1 ~ pin 13
     signal DIO2 ~ pin 8
     signal GND ~ pin 1
@@ -24,7 +30,7 @@ component E22900M30S:
     GND ~ pin 22
     signal MISO ~ pin 16
     signal MOSI ~ pin 17
-    signal NRST ~ pin 15
+    signal NRST ~ pin 15 # Reset, active low
     signal NSS ~ pin 19
     signal RXEN ~ pin 6
     signal SCK ~ pin 18
@@ -33,6 +39,8 @@ component E22900M30S:
     VCC ~ pin 10
 
     power = new Power
+    power.vcc ~ VCC; power.gnd ~ GND
+
     spi = new SPI
     spi.mosi ~ MOSI
     spi.miso ~ MISO
