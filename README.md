@@ -4,8 +4,10 @@ HAB PCB Tracker with cutdown, GPS, enviromental monitoring, LoRa telemetry
 
 Created by Lucy Moglia <eigenlucy@proton.me>
 
+![Block Diagram](https://github.com/eigenlucy/spacebridgehabpcb/blob/main/references/BlockDiagram.png)
+
 ## Atopile usage 101
-See atopile docs for detailed guides on usage: https://docs.atopile.io/atopile/introduction. Install instructions below
+See [atopile docs](https://docs.atopile.io/atopile/introduction) for detailed guides on usage. Install instructions below
 
 ### Building the project
 1: Clone the required submodules with ```$ git submodule update --init --recursive```
@@ -64,8 +66,9 @@ $ ato configure
 ```
 
 ### Visual Studio Code/Cursor Extension Install
+Install the [atopile extension](https://marketplace.visualstudio.com/items?itemName=atopile.atopile) into Cursor or VSC
 
-### Project Sturcture
+## Project Sturcture
 | title | file | kicad_pcb path | description  |
 | :---------: | :----------------: |:-----------------: | :---------------------------------:|
 | mainboard | ~/mainboard.ato | ~/layouts/default/default.kicad_pcb | the final pcb incorporating all submodules |
