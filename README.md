@@ -35,7 +35,7 @@ $ uv tool install atopile
 
 3.4: ```$ uv sync --dev```
 
-3.5: ```$ uv build </ul>```
+3.5: ```$ uv build```
 
 3.6: ```$ uv tool install atopile-0.3.XX-cp313-cp313-linux-_x86_64.whl```
 
@@ -51,7 +51,7 @@ $ ato configure
 ### Mac Install
 1: Install [Homebrew](https://brew.sh/)
 
-2: Install [kicad 9](https://formulae.brew.sh/cask/kicad) 
+2: Install [kicad 9](https://formulae.brew.sh/cask/kicad)
 
 3: install atopile with Homebrew
 ```bash
@@ -66,10 +66,12 @@ $ ato configure
 ### Visual Studio Code/Cursor Extension Install
 
 ### Project Sturcture
-| file          | kicad_pcb path | Description  |
-| ------------- |:-------------: | ------------:|
-| ~/mainboard.ato | ~/layouts/default/default.kicad_pcb | the final pcb incorporating all submodules |
-| ~/micromppt.ato | ~/micromppt/elec/layout/default/micromppt.kicad_pcb | 5W MPPT battery charger with embedded set point adjustment algorithm |
-| ~/particle_counter.ato | ~/layouts/particle-counter/particle-counter.kicad_pcb | alpha particle detector based on CERN open source hardware kit |
-| ~/cutoff.ato | ~/layouts/cutoff/cutoff.kicad_pcb | Balloon cutoff circuit, discharges a lithium hybrid supercapacitor through nichrome wire wrapped around the rope tying the payload to the balloon |
+| title | file          | kicad_pcb path | Description  |
+| --------- | ---------------- |:-----------------: | ---------------------------------:|
+| mainboard | ~/mainboard.ato | ~/layouts/default/default.kicad_pcb | the final pcb incorporating all submodules |
+| micromppt | ~/micromppt/elec/src/micromppt.ato | ~/micromppt/elec/layout/default/micromppt.kicad_pcb | 5W MPPT battery charger with embedded set point adjustment algorithm |
+| particle counter | ~/particle_counter.ato | ~/layouts/particle-counter/particle-counter.kicad_pcb | alpha particle detector based on CERN open source hardware kit |
+| cutoff mechanism | ~/cutoff.ato | ~/layouts/cutoff/cutoff.kicad_pcb | Balloon cutoff circuit, discharges a lithium hybrid supercapacitor through nichrome wire wrapped around the rope tying the payload to the balloon |
+| bq24045dsqr battery management system | ~/bq24045dsqr/elec/src/bq24045dsqr.ato |  ~/bq24045dsqr/elec/layout/default/bq24045dsqr.kicad_pcb | 5V 1A single cell lipo/lion charger |
+| tps63020dsjr 5V boost-buck | ~/.ato/modules/tps63020dsjr/elec/src/tps63020dsjr.ato | ~/.ato/modules/tps63020dsjr/elec/layout/tps63020dsjr.kicad_pcb |
 
