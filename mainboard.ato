@@ -10,6 +10,7 @@ from "atgm336h.ato" import ATGM336H
 from "cutoff.ato" import Cutoff
 from "ams1117-33/elec/src/ams1117-33.ato" import AMS111733
 from "bq24045dsqr/elec/src/bq24045dsqr.ato" import BQ2404XDSQR
+from "tps63020dsjr/elec/src/tps63020dsjr.ato" import TPS63020DSJR
 
 module Mainboard:
     power_5V = new Power
@@ -21,6 +22,10 @@ module Mainboard:
 
     # 5V 1A Single Cell Lion Charger
     # bms = new BQ2404XDSQR
+
+    boostbuck = new TPS63020DSJR
+    boostbuck.power_in ~ power_vbat
+    boostbuck.power_out ~ power_5V
 
     ldo = new AMS111733
     ldo.power_in ~ power_vbat; ldo.power_out ~ power_3V3
