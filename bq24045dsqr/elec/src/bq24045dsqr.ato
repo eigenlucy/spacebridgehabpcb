@@ -46,11 +46,11 @@ module BQ2404XDSQR:
     iset_resistor = new Resistor
     iset_resistor.1 ~ ic.ISET
     iset_resistor.2 ~ ic.VSS
-    # iset_resistor.value = 600ohm +/- 2%
+    iset_resistor.value = 540ohm +/- 2%
     iset_resistor.package = "0402"
 
     # default
-    charge_current = 900mA +/- 10%
+    charge_current = 1000mA +/- 10%
 
     assert 540V / iset_resistor.value within charge_current
     assert iset_resistor.value within 540ohm to 10.8kohm
