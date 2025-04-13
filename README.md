@@ -33,7 +33,61 @@ The SpaceBridge HAB PCB is a comprehensive tracking and instrumentation system f
 
 ## Block Diagram
 
+### Original Block Diagram
 ![Block Diagram](./references/BlockDiagram.png)
+
+### Mermaid Diagram
+```mermaid
+graph TD
+    %% Power System
+    Solar["Solar Panel"] --> MPPT["SPV1040 MicroMPPT"]
+    MPPT --> BattProt["UVP/OCP/OVP Battery Protection"]
+    BattProt --- Battery["LTO Battery"]
+    BattProt --> BoostBuck["TPS63020 Boost-Buck"]
+    BoostBuck --> Power5V["5V Power Rail"]
+    
+    %% ESP32 Microcontroller (Central)
+    ESP32["ESP32-S3"] 
+    
+    %% 5V Devices
+    Power5V --> LoRa["E22-900M30S/SX1262 LoRa Module"]
+    Power5V --> ParticleCounter["CERN DIY Particle Counter"]
+    Power5V --> CutoffSystem["Cutoff System"]
+    
+    %% Cutoff System Components
+    CutoffSystem --> Supercap["3.5V Low ESR Supercap"]
+    CutoffSystem --> Nichrome["Nichrome Wire ~20Ω"]
+    CutoffSystem --> TIP120["TIP120 NPN Darlington"]
+    
+    %% I2C Devices (3.3V)
+    ESP32 -- I2C/IO6+IO7 --> OLED["SSD1306 128x32 OLED"]
+    ESP32 -- I2C/IO6+IO7 --> BME680["BME680 Sensor"]
+    ESP32 -- I2C/IO6+IO7 --> GPS["ATGM336H GNSS/GPS"]
+    
+    %% SPI Connections
+    ESP32 -- SPI/IO10-13 --> LoRa
+    
+    %% GPIO Connections
+    ESP32 -- GPIO0 --> Supercap["SC_GATE (Supercap Control)"]
+    ESP32 -- GPIO1 --> TIP120["CUTOFF_GATE (Nichrome Control)"]
+    
+    %% ADC Connections
+    ParticleCounter -- ADC/GPIO2 --> ESP32
+    
+    %% Antenna
+    LoRa --- Antenna["915MHz LoRa Antenna (30dBm TX max)"]
+    
+    %% Styling
+    classDef power fill:#f96,stroke:#333,stroke-width:2px
+    classDef sensor fill:#bbf,stroke:#333,stroke-width:1px
+    classDef communication fill:#f9f,stroke:#333,stroke-width:1px
+    classDef controller fill:#9f6,stroke:#333,stroke-width:2px
+    
+    class Solar,MPPT,BattProt,Battery,BoostBuck,Power5V,Supercap power
+    class BME680,ParticleCounter,GPS sensor
+    class LoRa,Antenna,OLED communication
+    class ESP32 controller
+```
 
 ## Features
 
