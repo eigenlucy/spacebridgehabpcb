@@ -1,0 +1,23 @@
+component N087_2832TSWYG02_H14:
+    """Shenzhen_Allvision_Tech_N087_2832TSWYG02_H14 component"""
+    lcsc_id = "C2890610"
+    manufacturer = "Shenzhen Allvision Tech"
+    mpn = "N087-2832TSWYG02-H14"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2208011430_Newvisio-N087-2832TSWYG02-H14_C2890610.pdf"
+    designator_prefix = "U"
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4
+    pin 5
+    pin 6
+    pin 7
+    pin 8
+    pin 9
+    pin 10
+    pin 11
+    pin 12
+    pin 13
+    pin 14

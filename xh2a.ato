@@ -1,0 +1,11 @@
+component XH2A:
+    """BOOMELEBoom_Precision_Elec_XH_2A component"""
+    lcsc_id = "C20079"
+    manufacturer = "BOOMELE(Boom Precision Elec)"
+    mpn = "XH-2A"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1811132110_BOOMELE-Boom-Precision-Elec-XH-2A_C20079.pdf"
+    designator_prefix = "CN"
+
+    # pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2

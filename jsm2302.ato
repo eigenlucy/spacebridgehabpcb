@@ -1,0 +1,12 @@
+component JSM2302:
+    """JSMSEMI_JSM2302 component"""
+    lcsc_id = "C916403"
+    manufacturer = "JSMSEMI"
+    mpn = "JSM2302"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2308071512_JSMSEMI-JSM2302_C916403.pdf"
+    designator_prefix = "Q"
+
+    # pins
+    signal E ~ pin 2
+    signal B ~ pin 1
+    signal C ~ pin 3

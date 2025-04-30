@@ -10,12 +10,16 @@ from "cutoff.ato" import Cutoff
 from "atopile/ti-bq2404x//bq2404x.ato" import BQ24040DSQR
 from "atopile/ti-tps63020/ti-tps63020.ato" import TPS63020DSJR
 from "atopile/usb-connectors/usb-connectors.ato" import USBCConn
+from "xh2a.ato" import XH2A
+from "oled-128-32.ato" import OLED12832
 
 module Mainboard:
     power = new ElectricPower
     power_5V = new ElectricPower; power_5V.gnd ~ power.gnd
     power_3V3 = new ElectricPower; power_3V3.gnd ~ power.gnd
     power_vbat = new ElectricPower; power_vbat.gnd ~ power.gnd
+    battery_conn = new XH2A
+    battery_conn.p1 ~ power_vbat.vcc; battery_conn.p2 ~ power_vbat.gnd
 
     usbc = new USBCConn
     power_usb = new ElectricPower
@@ -23,9 +27,6 @@ module Mainboard:
 
     uc = new ESP32S3
     uc.power ~ power_3V3
-
-    # SPV1040 Based 5W Autonomous Solar Charger
-    # mppt = new Micromppt
 
     # 5V 1A Single Cell Lion Charger
     bms = new BQ24040DSQR
@@ -45,9 +46,10 @@ module Mainboard:
     lora = new App
     lora.power ~ power_5V
 
-    # oled = new OLED
-    # oled.power ~ power_3V3
-    # oled.i2c ~ uc.i2c
+    oled = new OLED12832
+    oled.power_3v3 ~ power_3V3
+    oled.power_5v ~ power_5V
+    oled.i2c ~ uc.i2c
 
     # bme688 = new Nose
     # bme688.power ~ power_3V3

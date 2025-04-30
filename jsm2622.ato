@@ -1,0 +1,14 @@
+component JSM2622:
+    """JSMSEMI_JSM2622 component"""
+    lcsc_id = "C2874712"
+    manufacturer = "JSMSEMI"
+    mpn = "JSM2622"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2111121930_JSMSEMI-JSM2622_C2874712.pdf"
+    designator_prefix = "Q"
+
+    # pins
+    signal C ~ pin 5
+    signal B ~ pin 4
+    signal E ~ pin 3
+    E ~ pin 2
+    E ~ pin 1
