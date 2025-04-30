@@ -33,3 +33,6 @@ dependencies:
 - type: registry
   identifier: eigenlucy/micromppt
   release: 3.0.0
+- type: registry
+  identifier: eigenlucy/nonhumanscent
+  release: 0.0.1

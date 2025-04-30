@@ -4,7 +4,7 @@ from "eigenlucy/particlecounter/main.ato" import ParticleCounter
 from "eigenlucy/micromppt/elec/src/micromppt.ato" import Micromppt
 from "eigenlucy/e22900m30s/main.ato" import App
 from "oled.ato" import OLED
-from "bme688.ato" import BME688
+from "eigenlucy/nonhumanscent/nose.ato" import Nose
 from "atgm336h.ato" import ATGM336H
 from "cutoff.ato" import Cutoff
 from "atopile/ti-bq2404x//bq2404x.ato" import BQ24040DSQR
@@ -19,7 +19,7 @@ module Mainboard:
 
     usbc = new USBCConn
     power_usb = new ElectricPower
-    power_usb ~ usbc.power
+    power_usb.vcc ~ usbc.usb2.buspower.hv; power_usb.gnd ~ usbc.usb2.buspower.gnd
 
     uc = new ESP32S3
     uc.power ~ power_3V3
@@ -29,7 +29,7 @@ module Mainboard:
 
     # 5V 1A Single Cell Lion Charger
     bms = new BQ24040DSQR
-    bms.power_in ~ usbc.power
+    bms.power_in ~ power_usb
     bms.power_batt ~ power_vbat
     # bms.power_good.io ~ uc.ioX
     # bms.charge_status.io ~ uc.ioX
@@ -45,13 +45,13 @@ module Mainboard:
     lora = new App
     lora.power ~ power_5V
 
-    oled = new OLED
-    oled.power ~ power_3V3
-    oled.i2c ~ uc.i2c
+    # oled = new OLED
+    # oled.power ~ power_3V3
+    # oled.i2c ~ uc.i2c
 
-    bme688 = new BME688
-    bme688.power ~ power_3V3
-    bme688.i2c ~ uc.i2c
+    # bme688 = new Nose
+    # bme688.power ~ power_3V3
+    # bme688.i2c ~ uc.i2c
 
     gps = new ATGM336H
     gps.power ~ power_3V3

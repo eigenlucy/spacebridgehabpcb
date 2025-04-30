@@ -1,6 +1,6 @@
 import Resistor, ElectricPower
 from "tip120.ato" import TIP120
-from "screwterms.ato" import Screwterms2P
+from "ningbo_kangnex_elec_wj128v502p.ato" import Ningbo_Kangnex_Elec_WJ128V_5_0_2P
 from "lithiumsc.ato" import LIC0825Q3R8506
 from "1sma5915bt3g.ato" import _1SMA5915BT3G
 
@@ -14,7 +14,7 @@ module Cutoff:
     power = new ElectricPower
     bjt_cutoff = new TIP120
     bjt_SC = new TIP120
-    screwterms = new Screwterms2P
+    screwterms = new Ningbo_Kangnex_Elec_WJ128V_5_0_2P
     supercap = new LIC0825Q3R8506
     Rsip = new Resistor; Rsip.value = 1kohm +/- 20%; Rsip.package = "R0402"
     zener = new _1SMA5915BT3G #3.9V nom zener diode OVP

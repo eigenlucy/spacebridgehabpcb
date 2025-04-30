@@ -1,0 +1,11 @@
+component Ningbo_Kangnex_Elec_WJ128V_5_0_2P:
+    """Ningbo_Kangnex_Elec_WJ128V_5_0_2P component"""
+    lcsc_id = "C8269"
+    manufacturer = "Ningbo Kangnex Elec"
+    mpn = "WJ128V-5.0-2P"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_1912251632_Ningbo-Kangnex-Elec-WJ128V-5-0-2P_C8269.pdf"
+    designator_prefix = "P"
+
+    # pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
