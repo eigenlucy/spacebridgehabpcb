@@ -12,6 +12,8 @@ from "atopile/ti-tps63020/ti-tps63020.ato" import TPS63020DSJR
 from "atopile/usb-connectors/usb-connectors.ato" import USBCConn
 from "xh2a.ato" import XH2A
 from "oled-128-32.ato" import OLED12832
+from "atopile/addressable-leds/sk6805-ec20.ato" import SK6805EC20
+from "eigenlucy/ncp1529asnt1g/main.ato" import Ldo
 
 module Mainboard:
     power = new ElectricPower
@@ -24,6 +26,7 @@ module Mainboard:
     usbc = new USBCConn
     power_usb = new ElectricPower
     power_usb.vcc ~ usbc.usb2.buspower.hv; power_usb.gnd ~ usbc.usb2.buspower.gnd
+    power_5V ~ power_usb
 
     uc = new ESP32S3
     uc.power ~ power_3V3
@@ -40,7 +43,12 @@ module Mainboard:
     boostbuck.power_out ~ power_5V
     # figure out if i can put 5V on Vout from the USB and what io connections this needs
 
-    # ldo = new AMS111733
+    led = new SK6805EC20
+    led.power ~ power_3V3
+
+    ldo = new Ldo
+    ldo.Vin ~ power_5V
+    ldo.Vout ~ power_3V3
     # ldo.power_in ~ power_vbat; ldo.power_out ~ power_3V3
 
     lora = new App
