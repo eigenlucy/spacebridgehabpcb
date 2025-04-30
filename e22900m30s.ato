@@ -1,5 +1,4 @@
-from "generics/interfaces.ato" import Power, SPI
-from "generics/capacitors.ato" import Capacitor 
+import ElectricPower, SPI, Capacitor 
 
 component E22900M30S:
     """Chengdu_Ebyte_Elec_Tech_E22_900M30S component"""
@@ -38,7 +37,7 @@ component E22900M30S:
     signal VCC ~ pin 9
     VCC ~ pin 10
 
-    power = new Power
+    power = new ElectricPower
     power.vcc ~ VCC; power.gnd ~ GND
 
     spi = new SPI

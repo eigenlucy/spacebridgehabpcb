@@ -1,5 +1,4 @@
-from "generics/interfaces.ato" import Power
-import Resistor
+import Resistor, ElectricPower
 from "tip120.ato" import TIP120
 from "screwterms.ato" import Screwterms2P
 from "lithiumsc.ato" import LIC0825Q3R8506
@@ -12,7 +11,7 @@ Notes:
 """
 
 module Cutoff:
-    power = new Power
+    power = new ElectricPower
     bjt_cutoff = new TIP120
     bjt_SC = new TIP120
     screwterms = new Screwterms2P
