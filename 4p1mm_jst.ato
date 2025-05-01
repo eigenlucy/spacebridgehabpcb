@@ -1,0 +1,21 @@
+import ElectricPower, I2C
+
+component _4P1MMJST:
+    """JST_Sales_America_BM04B_SRSS_TBLFSN component"""
+    lcsc_id = "C160390"
+    manufacturer = "JST Sales America"
+    mpn = "BM04B-SRSS-TB(LF)(SN)"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-BM04B-SRSS-TB-LF-SN_C160390.pdf"
+    designator_prefix = "CN"
+
+    # pins
+    signal GND ~ pin 0
+    GND ~ pin 1
+    signal VCC ~ pin 2
+    signal SDA ~ pin 3
+    signal SCL ~ pin 4
+
+    power = new ElectricPower
+    power.vcc ~ VCC; power.gnd ~ GND
+    i2c = new I2C
+    i2c.sda ~ SDA; i2c.scl ~ SCL
