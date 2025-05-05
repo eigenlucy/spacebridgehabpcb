@@ -2,7 +2,7 @@ import Resistor, Capacitor, SPI, I2C, USB2_0_IF, ElectricPower
 from "atopile/esp32s3/esp32s3.ato" import ESP32S3
 from "eigenlucy/particlecounter/main.ato" import ParticleCounter
 from "eigenlucy/micromppt/elec/src/micromppt.ato" import Micromppt
-from "eigenlucy/e22900m30s/main.ato" import App
+from "eigenlucy/e22900m22s/main.ato" import Lora
 from "oled.ato" import OLED
 from "eigenlucy/nonhumanscent/nose.ato" import Nose
 from "atgm336h.ato" import ATGM336H
@@ -13,7 +13,7 @@ from "atopile/usb-connectors/usb-connectors.ato" import USBCConn
 from "xh2a.ato" import XH2A
 from "oled-128-32.ato" import OLED12832
 from "atopile/addressable-leds/sk6805-ec20.ato" import SK6805EC20
-from "eigenlucy/ncp1529asnt1g/main.ato" import Ldo
+from "eigenlucy/ncp1529asnt1g/main.ato" import Regulator
 from "4p1mm_jst.ato" import _4P1MMJST
 
 module Mainboard:
@@ -42,30 +42,24 @@ module Mainboard:
     bms.power_batt ~ power_vbat
     # bms.power_good.io ~ uc.ioX
     # bms.charge_status.io ~ uc.ioX
-
-    boostbuck = new TPS63020DSJR
-    boostbuck.power_in ~ power_vbat
-    boostbuck.power_out ~ power_5V
-    # figure out if i can put 5V on Vout from the USB and what io connections this needs
-
-    # led = new SK6805EC20
+    # led = new SK6805EC20 #Neopixel indicator
     # led.power ~ power_3V3
 
-    ldo = new Ldo
+    ldo = new Regulator
     ldo.Vin ~ power_vbat
     ldo.Vout ~ power_3V3
 
-    lora = new App
-    lora.power ~ power_5V
+    lora = new Lora
+    lora.power ~ power_3V3
 
     oled = new OLED12832
     oled.power_3v3 ~ power_3V3
     oled.power_5v ~ power_5V
     oled.i2c ~ uc.i2c
 
-    # bme688 = new Nose
-    # bme688.power ~ power_3V3
-    # bme688.i2c ~ uc.i2c
+    bme688 = new Nose
+    bme688.power ~ power_3V3
+    bme688.i2c ~ uc.i2c
 
     gps = new ATGM336H
     gps.power ~ power_3V3

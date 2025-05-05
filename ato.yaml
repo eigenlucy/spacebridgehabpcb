@@ -44,4 +44,7 @@ dependencies:
   release: 0.1.1
 - type: registry
   identifier: eigenlucy/ncp1529asnt1g
-  release: 0.1.1
+  release: 0.1.2
+- type: registry
+  identifier: eigenlucy/e22900m22s
+  release: 0.1.2
