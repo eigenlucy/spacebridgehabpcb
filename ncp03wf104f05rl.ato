@@ -1,0 +1,11 @@
+component NCP03WF104F05RL:
+    """Murata_Electronics_NCP03WF104F05RL component"""
+    lcsc_id = "C91635"
+    manufacturer = "Murata Electronics"
+    mpn = "NCP03WF104F05RL"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/1811081522_Murata-Electronics-NCP03WF104F05RL_C91635.pdf"
+    designator_prefix = "R"
+
+    # pins
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2

@@ -15,6 +15,7 @@ from "oled-128-32.ato" import OLED12832
 from "atopile/addressable-leds/sk6805-ec20.ato" import SK6805EC20
 from "eigenlucy/ncp1529asnt1g/main.ato" import Regulator
 from "4p1mm_jst.ato" import _4P1MMJST
+from "ncp03wf104f05rl.ato" import NCP03WF104F05RL
 
 module Mainboard:
     power = new ElectricPower
@@ -23,6 +24,8 @@ module Mainboard:
     power_vbat = new ElectricPower; power_vbat.gnd ~ power.gnd
     battery_conn = new XH2A
     battery_conn.p1 ~ power_vbat.vcc; battery_conn.p2 ~ power_vbat.gnd
+    C_batconn = new Capacitor; C_batconn.value = 10uF +/- 20%; C_batconn.package = "C0805"
+    C_batconn.power ~ power_vbat
 
     usbc = new USBCConn
     power_usb = new ElectricPower
@@ -30,16 +33,18 @@ module Mainboard:
     power_5V ~ power_usb
 
     i2c_conn = new _4P1MMJST
-    i2c_conn.power ~ power_3V3 
+    i2c_conn.power ~ power_3V3
+    i2c_conn2 = new _4P1MMJST
+    i2c_conn2.power ~ power_3V3
 
     uc = new ESP32S3
     uc.power ~ power_3V3
     uc.i2c ~ i2c_conn.i2c
 
-    # 5V 1A Single Cell Lion Charger
-    bms = new BQ24040DSQR
-    bms.power_in ~ power_usb
-    bms.power_batt ~ power_vbat
+    # 5V 1A Single Cell Lion Charger NOT NEEDED WITH MICROMPPT
+    # bms = new BQ24040DSQR
+    # bms.power_in ~ power_usb
+    # bms.power_batt ~ power_vbat
     # bms.power_good.io ~ uc.ioX
     # bms.charge_status.io ~ uc.ioX
     # led = new SK6805EC20 #Neopixel indicator
@@ -52,18 +57,22 @@ module Mainboard:
     lora = new Lora
     lora.power ~ power_3V3
 
-    oled = new OLED12832
-    oled.power_3v3 ~ power_3V3
-    oled.power_5v ~ power_5V
-    oled.i2c ~ uc.i2c
+    # oled = new OLED12832
+    # oled.power_3v3 ~ power_3V3
+    # oled.power_5v ~ power_5V
+    # oled.i2c ~ uc.i2c
 
-    bme688 = new Nose
-    bme688.power ~ power_3V3
-    bme688.i2c ~ uc.i2c
+    # bme688 = new Nose
+    # bme688.power ~ power_3V3
+    # bme688.i2c ~ uc.i2c
 
     gps = new ATGM336H
     gps.power ~ power_3V3
     gps.i2c ~ uc.i2c
+    C_gps1 = new Capacitor; C_gps1.value = 2.2uF +/- 20%; C_gps1.package = "C0603"
+    C_gps1.power ~ gps.power
+    C_gps2 = new Capacitor; C_gps2.value = 100nF +/- 20%; C_gps2.package = "C0402"
+    C_gps2.power ~ gps.power
     # Connect RTC voltage, maybe add another small battery
 
     # detector = new ParticleCounter
@@ -71,8 +80,13 @@ module Mainboard:
     # detector.out ~ uc.io2 # ADC Channel
 
     cutoff = new Cutoff
-    cutoff.power ~ power_5V # cutoff.power--/\1kohm/\-->|supercap|
+    cutoff.power ~ power_vbat # cutoff.power--/\1kohm/\-->|supercap|
     # IO can be remapped as needed for layout, check esp32s3.ato
     cutoff.SC_GATE ~ uc.io0 # Dis/connect supercapacitor
     cutoff.CUTOFF_GATE ~ uc.io1 # Fire cutoff, active high
 
+    ntc = new NCP03WF104F05RL
+    R_div = new Resistor; R_div.value = 10kohm +/- 5%; R_div.package = "R0201"
+    R_div.p1 ~ uc.power.vcc; R_div.p2 ~ ntc.p1; ntc.p2 ~ uc.power.gnd
+    signal TEMP; TEMP ~ ntc.p1
+    # uc.ic.GPIOx ~ TEMP

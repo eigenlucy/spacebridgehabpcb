@@ -1,4 +1,4 @@
-import ElectricPower, I2C
+import ElectricPower, I2C, Capacitor
 
 component ATGM336H:
     """ZHONGKEWEI_ATGM336H_5N31 component"""
@@ -32,3 +32,4 @@ component ATGM336H:
 
     i2c = new I2C
     SCL ~ i2c.scl; SDA ~ i2c.sda
+
