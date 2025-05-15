@@ -1,0 +1,20 @@
+import ElectricPower, I2C
+
+component GZP6859D101KPP:
+    """Sencoch_Semiconductor_GZP6859D101KPP component"""
+    lcsc_id = "C3038049"
+    manufacturer = "Sencoch Semiconductor"
+    mpn = "GZP6859D101KPP"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304111030_Sencoch-Semiconductor-GZP6859D101KPP_C3038049.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal GND ~ pin 6
+    signal SCL ~ pin 5
+    signal SDA ~ pin 4
+    signal VDD ~ pin 2
+
+    power = new ElectricPower
+    power.vcc ~ VDD; power.gnd ~ GND
+    i2c = new I2C
+    i2c.sda ~ SDA; i2c.scl ~ SCL

@@ -16,6 +16,7 @@ from "atopile/addressable-leds/sk6805-ec20.ato" import SK6805EC20
 from "eigenlucy/ncp1529asnt1g/main.ato" import Regulator
 from "4p1mm_jst.ato" import _4P1MMJST
 from "ncp03wf104f05rl.ato" import NCP03WF104F05RL
+from "gzp6859d101kpp.ato" import GZP6859D101KPP
 
 module Mainboard:
     power = new ElectricPower
@@ -50,6 +51,10 @@ module Mainboard:
     # led = new SK6805EC20 #Neopixel indicator
     # led.power ~ power_3V3
 
+    pressure_sensor =  new GZP6859D101KPP
+    pressure_sensor.i2c ~ uc.i2c
+    pressure_sensor.power ~ uc.power
+
     ldo = new Regulator
     ldo.Vin ~ power_vbat
     ldo.Vout ~ power_3V3
@@ -62,9 +67,9 @@ module Mainboard:
     # oled.power_5v ~ power_5V
     # oled.i2c ~ uc.i2c
 
-    # bme688 = new Nose
-    # bme688.power ~ power_3V3
-    # bme688.i2c ~ uc.i2c
+    bme688 = new Nose
+    bme688.power ~ power_3V3
+    bme688.i2c ~ uc.i2c
 
     gps = new ATGM336H
     gps.power ~ power_3V3

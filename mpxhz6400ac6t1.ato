@@ -1,0 +1,17 @@
+component NXP_Semicon_MPXHZ6400AC6T1:
+    """NXP_Semicon_MPXHZ6400AC6T1 component"""
+    lcsc_id = "C511770"
+    manufacturer = "NXP Semicon"
+    mpn = "MPXHZ6400AC6T1"
+    datasheet_url = "https://www.nxp.com/docs/en/data-sheet/MPXH6400A.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal DNC ~ pin 1
+    DNC ~ pin 5
+    DNC ~ pin 6
+    DNC ~ pin 7
+    DNC ~ pin 8
+    signal GND ~ pin 3
+    signal VOUT ~ pin 4
+    signal VS ~ pin 2

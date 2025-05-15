@@ -5,6 +5,7 @@ from "lithiumsc.ato" import LIC0825Q3R8506
 from "1sma5915bt3g.ato" import _1SMA5915BT3G
 from "jsm2302.ato" import JSM2302
 from "jsm2622.ato" import JSM2622
+from "xh2a.ato" import XH2A
 
 """
 Spacebridge HAB Cutoff Mechanism
@@ -14,23 +15,28 @@ Notes:
 
 module Cutoff:
     power = new ElectricPower
-    bjt_cutoff = new JSM2622
-    bjt_SC = new JSM2302
-    screwterms = new Ningbo_Kangnex_Elec_WJ128V_5_0_2P
+    fet_cutoff = new JSM2622
+    fet_SC = new JSM2302
+    fet_heater = new JSM2302
+    cutoff_conn = new XH2A
+    heater_conn = new XH2A
     supercap = new LIC0825Q3R8506
     Rsip = new Resistor; Rsip.value = 1kohm +/- 20%; Rsip.package = "R0402"
     zener = new _1SMA5915BT3G #3.9V nom zener diode OVP
   
-    signal SC_GATE ~ bjt_SC.B # Dis/connect supercapacitor from charging
-    signal CUTOFF_GATE ~ bjt_cutoff.B # Fire cutoff
+    signal SC_GATE ~ fet_SC.B # Dis/connect supercapacitor from charging
+    signal CUTOFF_GATE ~ fet_cutoff.B # Fire cutoff
+    signal HEATER_GATE ~ fet_heater.B # Toggle heater
+
     Rpulldown = new Resistor; Rpulldown.value = 10kohm +/- 20%; Rpulldown.package = "R0402"
-    Rpulldown.p1 ~ bjt_cutoff.B; Rpulldown.p2 ~ power.gnd
+    Rpulldown.p1 ~ fet_cutoff.B; Rpulldown.p2 ~ power.gnd
     signal SC_Sense # Sense capacitor voltage through Rtop/Rbot divider
     Rtop = new Resistor; Rtop.value = 100kohm +/- 20%; Rtop.package = "R0402"
     Rbot = new Resistor; Rbot.value = 100kohm +/- 20%; Rbot.package = "R0402"
     supercap.p1 ~ Rtop.p1; Rtop.p2 ~ Rbot.p1; Rbot.p2 ~ power.gnd; Rtop.p2 ~ SC_Sense 
-    power.vcc ~ Rsip.p1; Rsip.p2 ~ supercap.p1; supercap.p2 ~ bjt_SC.C; bjt_SC.E ~ power.gnd
+    power.vcc ~ Rsip.p1; Rsip.p2 ~ supercap.p1; supercap.p2 ~ fet_SC.C; fet_SC.E ~ power.gnd
     zener.K ~ supercap.p1; zener.A ~ power.gnd # Reverse conducts through SC/Rsip when SC_V >= 3.9V, redundancy in case uC fails to disconnect SC
     # Nichrome attaches across screw terminals
-    screwterms.p1 ~ supercap.p1; screwterms.p2 ~ bjt_cutoff.C; bjt_cutoff.E ~ power.gnd
+    cutoff_conn.p1 ~ supercap.p1; cutoff_conn.p2 ~ fet_cutoff.C; fet_cutoff.E ~ power.gnd
+    heater_conn.p1 ~ supercap.p1; heater_conn.p2 ~ fet_heater.C; fet_heater.E ~ power.gnd
 
