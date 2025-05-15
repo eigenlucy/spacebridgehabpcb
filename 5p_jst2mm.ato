@@ -1,0 +1,16 @@
+component JST_Sales_America_B5B_PH_SM4_TBLFSN:
+    """JST_Sales_America_B5B_PH_SM4_TBLFSN component"""
+    lcsc_id = "C265085"
+    manufacturer = "JST Sales America"
+    mpn = "B5B-PH-SM4-TB(LF)(SN)"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2209210930_JST-B5B-PH-SM4-TB-LF-SN_C265085.pdf"
+    designator_prefix = "U"
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4
+    pin 5
+    pin 6
+    pin 7

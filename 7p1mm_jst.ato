@@ -1,0 +1,18 @@
+component _7P1MMJST:
+    """JST_Sales_America_BM07B_SRSS_TBLFSN component"""
+    lcsc_id = "C160393"
+    manufacturer = "JST Sales America"
+    mpn = "BM07B-SRSS-TB(LF)(SN)"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-BM07B-SRSS-TB-LF-SN_C160393.pdf"
+    designator_prefix = "CN"
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4
+    pin 5
+    pin 6
+    pin 7
+    pin 8
+    pin 9

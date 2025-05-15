@@ -17,6 +17,7 @@ from "eigenlucy/ncp1529asnt1g/main.ato" import Regulator
 from "4p1mm_jst.ato" import _4P1MMJST
 from "ncp03wf104f05rl.ato" import NCP03WF104F05RL
 from "gzp6859d101kpp.ato" import GZP6859D101KPP
+from "7p1mm_jst.ato" import _7P1MMJST
 
 module Mainboard:
     power = new ElectricPower
@@ -41,6 +42,8 @@ module Mainboard:
     uc = new ESP32S3
     uc.power ~ power_3V3
     uc.i2c ~ i2c_conn.i2c
+
+    gpio_conn = new _7P1MMJST
 
     # 5V 1A Single Cell Lion Charger NOT NEEDED WITH MICROMPPT
     # bms = new BQ24040DSQR
