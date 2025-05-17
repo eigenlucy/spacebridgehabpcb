@@ -1,0 +1,11 @@
+component Murata_Electronics_LQP03TG47NJ02D:
+    """Murata_Electronics_LQP03TG47NJ02D component"""
+    lcsc_id = "C86115"
+    manufacturer = "Murata Electronics"
+    mpn = "LQP03TG47NJ02D"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_Murata-Electronics-LQP03TG47NJ02D_C86115.pdf"
+    designator_prefix = "L"
+
+    # pins
+    signal p2 ~ pin 2
+    signal p1 ~ pin 1

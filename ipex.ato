@@ -1,0 +1,13 @@
+component IPEX:
+    """ZIISOR_IPEX_1 component"""
+    lcsc_id = "C2987682"
+    manufacturer = "ZIISOR"
+    mpn = "IPEX-1"
+    datasheet_url = "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2203301630_ZIISOR-IPEX-1_C2987682.pdf"
+    designator_prefix = "U"
+
+    # pins
+    signal MNT ~ pin 1
+    signal GND ~ pin 2
+    MNT ~ pin 3
+    signal RF_IN ~ pin 4

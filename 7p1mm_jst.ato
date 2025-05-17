@@ -7,12 +7,12 @@ component _7P1MMJST:
     designator_prefix = "CN"
 
     # pins
-    pin 1
-    pin 2
-    pin 3
-    pin 4
-    pin 5
-    pin 6
-    pin 7
-    pin 8
-    pin 9
+    signal p1 ~ pin 1
+    signal p2 ~ pin 2
+    signal p3 ~ pin 3
+    signal p4 ~ pin 4
+    signal p5 ~ pin 5
+    signal p6 ~ pin 6
+    signal p7 ~ pin 7
+    signal p8 ~ pin 8
+    signal p9 ~ pin 9

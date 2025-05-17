@@ -21,7 +21,7 @@ module Cutoff:
     cutoff_conn = new XH2A
     heater_conn = new XH2A
     supercap = new LIC0825Q3R8506
-    Rsip = new Resistor; Rsip.value = 1kohm +/- 20%; Rsip.package = "R0402"
+    Rsip = new Resistor; Rsip.value = 270ohm +/- 20%; Rsip.package = "R0805"
     zener = new _1SMA5915BT3G #3.9V nom zener diode OVP
   
     signal SC_GATE ~ fet_SC.B # Dis/connect supercapacitor from charging

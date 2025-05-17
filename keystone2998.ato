@@ -1,0 +1,16 @@
+import ElectricPower
+
+component Keystone_2998:
+    """Keystone_2998 component"""
+    lcsc_id = "C238096"
+    manufacturer = "Keystone"
+    mpn = "2998"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2410121804_Keystone-2998_C238096.pdf"
+    designator_prefix = "BAT"
+
+    # pins
+    signal GND ~ pin 3
+    signal VCC ~ pin 1
+    VCC ~ pin 2
+    power = new ElectricPower
+    power.vcc ~ VCC; power.gnd ~ GND

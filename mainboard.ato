@@ -18,6 +18,9 @@ from "4p1mm_jst.ato" import _4P1MMJST
 from "ncp03wf104f05rl.ato" import NCP03WF104F05RL
 from "gzp6859d101kpp.ato" import GZP6859D101KPP
 from "7p1mm_jst.ato" import _7P1MMJST
+from "keystone2998.ato" import Keystone_2998
+from "ipex.ato" import IPEX
+from "murata_electronics_lq_p03t_g47n_j02d.ato" import Murata_Electronics_LQP03TG47NJ02D
 
 module Mainboard:
     power = new ElectricPower
@@ -42,8 +45,13 @@ module Mainboard:
     uc = new ESP32S3
     uc.power ~ power_3V3
     uc.i2c ~ i2c_conn.i2c
+    uc.i2c ~ i2c_conn2.i2c
 
     gpio_conn = new _7P1MMJST
+    gpio_conn.p1 ~ uc.io45
+    gpio_conn.p2 ~ uc.io48
+    gpio_conn.p3 ~ uc.io47
+    gpio_conn.p4 ~ uc.io21
 
     # 5V 1A Single Cell Lion Charger NOT NEEDED WITH MICROMPPT
     # bms = new BQ24040DSQR
@@ -56,7 +64,9 @@ module Mainboard:
 
     pressure_sensor =  new GZP6859D101KPP
     pressure_sensor.i2c ~ uc.i2c
-    pressure_sensor.power ~ uc.power
+    pressure_sensor.power ~ power_3V3
+    C_pres = new Capacitor; C_pres.value = 100nF +/- 20%; C_pres.package = "C0402"
+    C_pres.power ~ pressure_sensor.power
 
     ldo = new Regulator
     ldo.Vin ~ power_vbat
@@ -64,6 +74,8 @@ module Mainboard:
 
     lora = new Lora
     lora.power ~ power_3V3
+    lora.spi ~ uc.spi2
+    lora.lora.spi_cs.line ~ uc.spi2_cs.line
 
     # oled = new OLED12832
     # oled.power_3v3 ~ power_3V3
@@ -82,6 +94,12 @@ module Mainboard:
     C_gps2 = new Capacitor; C_gps2.value = 100nF +/- 20%; C_gps2.package = "C0402"
     C_gps2.power ~ gps.power
     # Connect RTC voltage, maybe add another small battery
+    gps_bat = new Keystone_2998;
+    RF_conn = new IPEX
+    RF_conn.RF_IN ~ gps.RF_IN
+    RF_conn.GND ~ gps.GND
+    rf_L = new Murata_Electronics_LQP03TG47NJ02D
+    gps.VCC_RF ~ rf_L.p1; rf_L.p2 ~ RF_conn.RF_IN
 
     # detector = new ParticleCounter
     # detector.power ~ power_5V # Check if this is right

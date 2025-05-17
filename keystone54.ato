@@ -1,0 +1,12 @@
+component Keystone_54:
+    """Keystone_54 component"""
+    lcsc_id = "C2685232"
+    manufacturer = "Keystone"
+    mpn = "54"
+    datasheet_url = "https://www.lcsc.com/datasheet/lcsc_datasheet_2103051836_Keystone-54_C2685232.pdf"
+    designator_prefix = "BAT"
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
