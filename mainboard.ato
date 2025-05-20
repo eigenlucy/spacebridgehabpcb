@@ -1,4 +1,8 @@
-import Resistor, Capacitor, SPI, I2C, USB2_0_IF, ElectricPower
+#pragma experiment("BRIDGE_CONNECT")
+#pragma experiment("FOR_LOOP")
+
+import Resistor, Capacitor, SPI, I2C, USB2_0_IF, ElectricPower, ElectricLogic
+from "components/ti_addressor.py" import TIAddressor
 from "atopile/esp32s3/esp32s3.ato" import ESP32S3
 from "eigenlucy/particlecounter/main.ato" import ParticleCounter
 from "eigenlucy/micromppt/elec/src/micromppt.ato" import Micromppt
@@ -13,7 +17,7 @@ from "atopile/usb-connectors/usb-connectors.ato" import USBCConn
 from "xh2a.ato" import XH2A
 from "oled-128-32.ato" import OLED12832
 from "atopile/addressable-leds/sk6805-ec20.ato" import SK6805EC20
-from "eigenlucy/ncp1529asnt1g/main.ato" import Regulator
+from "eigenlucy/ncp1529asnt1g/main.ato" import Ldo
 from "4p1mm_jst.ato" import _4P1MMJST
 from "ncp03wf104f05rl.ato" import NCP03WF104F05RL
 from "gzp6859d101kpp.ato" import GZP6859D101KPP
@@ -21,6 +25,7 @@ from "7p1mm_jst.ato" import _7P1MMJST
 from "keystone2998.ato" import Keystone_2998
 from "ipex.ato" import IPEX
 from "murata_electronics_lq_p03t_g47n_j02d.ato" import Murata_Electronics_LQP03TG47NJ02D
+from "atopile/ti-ina232/ti-ina232.ato" import Texas_Instruments_INA232x_driver
 
 module Mainboard:
     power = new ElectricPower
@@ -28,7 +33,8 @@ module Mainboard:
     power_3V3 = new ElectricPower; power_3V3.gnd ~ power.gnd
     power_vbat = new ElectricPower; power_vbat.gnd ~ power.gnd
     battery_conn = new XH2A
-    battery_conn.p1 ~ power_vbat.vcc; battery_conn.p2 ~ power_vbat.gnd
+    # battery_conn.p1 ~ power_vbat.vcc disconnect for high side sensing with INA232
+    battery_conn.p2 ~ power_vbat.gnd
     C_batconn = new Capacitor; C_batconn.value = 10uF +/- 20%; C_batconn.package = "C0805"
     C_batconn.power ~ power_vbat
 
@@ -68,7 +74,7 @@ module Mainboard:
     C_pres = new Capacitor; C_pres.value = 100nF +/- 20%; C_pres.package = "C0402"
     C_pres.power ~ pressure_sensor.power
 
-    ldo = new Regulator
+    ldo = new Ldo
     ldo.Vin ~ power_vbat
     ldo.Vout ~ power_3V3
 
@@ -116,3 +122,18 @@ module Mainboard:
     R_div.p1 ~ uc.power.vcc; R_div.p2 ~ ntc.p1; ntc.p2 ~ uc.power.gnd
     signal TEMP; TEMP ~ ntc.p1
     # uc.ic.GPIOx ~ TEMP
+    
+    current_sensors = new Texas_Instruments_INA232x_driver[2]
+    
+    current_sensors[0].i2c.address = 0x4A
+    current_sensors[1].i2c.address = 0x4B
+
+    current_sensors[0].max_current = 3A
+    current_sensors[1].max_current = 10A
+
+    for sensor in current_sensors:
+        sensor.power ~ uc.power
+        sensor.i2c ~ uc.i2c
+
+    battery_conn.p1 ~> current_sensors[0].shunt ~> power_vbat.vcc
+    # power_supercap.vcc ~> current_sensors[1].shunt ~> power_heater.vcc
