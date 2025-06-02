@@ -46,12 +46,16 @@ module Mainboard:
     uc.power ~ power_3V3
     uc.i2c ~ i2c_conn.i2c
     uc.i2c ~ i2c_conn2.i2c
+    uc.usb2 ~ usbc.usb2
 
     gpio_conn = new _7P1MMJST
     gpio_conn.p1 ~ uc.io45
     gpio_conn.p2 ~ uc.io48
     gpio_conn.p3 ~ uc.io47
     gpio_conn.p4 ~ uc.io21
+    gpio_conn.p5 ~ uc.io14
+    gpio_conn.p6 ~ power_3V3.vcc
+    gpio_conn.p7 ~ power_3V3.gnd
 
     # 5V 1A Single Cell Lion Charger NOT NEEDED WITH MICROMPPT
     # bms = new BQ24040DSQR
@@ -69,8 +73,12 @@ module Mainboard:
     C_pres.power ~ pressure_sensor.power
 
     ldo = new Regulator
+    ldo.ic.EN ~ ldo.Vin.vcc
     ldo.Vin ~ power_vbat
+    ldo.Vin ~ power_usb
+    # DO NOT PLUG IN USB-C AND BATTERY AT THE SAME TIME
     ldo.Vout ~ power_3V3
+    assert ldo.OUTPUT_VOLTAGE is 3.3V +/- 5%
 
     lora = new Lora
     lora.power ~ power_3V3
@@ -94,7 +102,7 @@ module Mainboard:
     C_gps2 = new Capacitor; C_gps2.value = 100nF +/- 20%; C_gps2.package = "C0402"
     C_gps2.power ~ gps.power
     # Connect RTC voltage, maybe add another small battery
-    gps_bat = new Keystone_2998;
+    gps_bat = new Keystone_2998; gps_bat.power.vcc ~ gps.VBAT; gps_bat.power.gnd ~ power.gnd
     RF_conn = new IPEX
     RF_conn.RF_IN ~ gps.RF_IN
     RF_conn.GND ~ gps.GND
@@ -110,6 +118,7 @@ module Mainboard:
     # IO can be remapped as needed for layout, check esp32s3.ato
     cutoff.SC_GATE ~ uc.io0 # Dis/connect supercapacitor
     cutoff.CUTOFF_GATE ~ uc.io1 # Fire cutoff, active high
+    cutoff.SC_Sense ~ uc.io37
 
     ntc = new NCP03WF104F05RL
     R_div = new Resistor; R_div.value = 10kohm +/- 5%; R_div.package = "R0201"
