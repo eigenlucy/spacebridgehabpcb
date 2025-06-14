@@ -294,12 +294,12 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../../3Dmodels/SVG/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "../../3Dmodels/default.glb",
       "svg": "",
-      "vrml": ""
+      "vrml": "../../3Dmodels/default.wrl"
     },
     "page_layout_descr_file": ""
   },

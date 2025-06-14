@@ -124,4 +124,4 @@ module Mainboard:
     R_div = new Resistor; R_div.value = 10kohm +/- 5%; R_div.package = "R0201"
     R_div.p1 ~ uc.power.vcc; R_div.p2 ~ ntc.p1; ntc.p2 ~ uc.power.gnd
     signal TEMP; TEMP ~ ntc.p1
-    # uc.ic.GPIOx ~ TEMP
+    uc.io16 ~ TEMP
