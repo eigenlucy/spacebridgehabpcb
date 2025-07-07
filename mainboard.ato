@@ -97,6 +97,7 @@ module Mainboard:
     gps = new ATGM336H
     gps.power ~ power_3V3
     gps.i2c ~ uc.i2c
+    gps.uart ~ uc.uart
     C_gps1 = new Capacitor; C_gps1.value = 2.2uF +/- 20%; C_gps1.package = "C0603"
     C_gps1.power ~ gps.power
     C_gps2 = new Capacitor; C_gps2.value = 100nF +/- 20%; C_gps2.package = "C0402"
@@ -124,4 +125,4 @@ module Mainboard:
     R_div = new Resistor; R_div.value = 10kohm +/- 5%; R_div.package = "R0201"
     R_div.p1 ~ uc.power.vcc; R_div.p2 ~ ntc.p1; ntc.p2 ~ uc.power.gnd
     signal TEMP; TEMP ~ ntc.p1
-    # uc.ic.GPIOx ~ TEMP
+    uc.ic.IO16 ~ TEMP

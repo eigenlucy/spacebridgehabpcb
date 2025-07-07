@@ -1,4 +1,4 @@
-import ElectricPower, I2C, Capacitor
+import ElectricPower, ElectricLogic, UART, I2C, Capacitor
 from "ipex.ato" import IPEX
 
 component ATGM336H:
@@ -33,6 +33,10 @@ component ATGM336H:
 
     i2c = new I2C
     SCL ~ i2c.scl; SDA ~ i2c.sda
+
+    uart = new UART
+    uart.rx ~ RXD
+    uart.tx ~ TXD
 
     RF_conn = new IPEX
     RF_conn.RF_IN ~ RF_IN
